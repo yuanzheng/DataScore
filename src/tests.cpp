@@ -5,7 +5,6 @@
 #include <string>
 #include <stdio.h>
 #include <vector>
-#include "../inc/TrainFile.h"
 
 using namespace std;
 using namespace boost;
@@ -413,88 +412,12 @@ void getCell(string file_path, string delimiter, size_t x = 1, size_t y = 1)
     }
 }
 
-void predict(string file_path)
-{
 
 
-}
 
-void training(string file_path)
-{
-    TrainFile* f = NULL;
-
-    while (true)
-    {
-        string line;
-        cout << "1. Load training file" << endl;
-        cout << "2. Number of rows" << endl;
-        cout << "3. Number of columns" << endl;
-        cout << "4. Print column names" << endl;
-        cout << "5. Print one row, (row number)" << endl;
-        cout << "6. Print one column, (column number)" << endl;
-        cout << "7. Split by columns, (number of columns in each file)" << endl;
-        cout << "8. Split by rows, (number of rows in each file)" << endl;
-
-        getline(cin, line);
-        //cin >> line;
-
-        if (line == "1")
-        {
-            if (f == NULL) {
-                cout << "first time, point is null" << endl;
-                f = new TrainFile(file_path);
-
-            }
-        }
-        if (line == "quit")
-            break;
-
-
-        cout << "see: " << line << endl;
-    }
-
-    if (f != NULL)
-    {
-        cout << "delete f" << endl;
-        delete f;
-    }
-
-}
-
-
-int main(int argc, char* argv[]) {
+int main() {
     cout << "Hello, World!" << endl;
     string file_path = "files/train.csv";
-    
-    cout << "argc = " << argc << "  " << (argc != 3) << endl;
-    if (argc != 3)
-    {
-        cout << "Run taining:\nUSAGE: ./main -t train.csv" << endl;
-        cout << "Run predicting:\nUSAGE: ./main -p test.csv" << endl;
-        return -1;
-    }
-        
-
-    if (strcmp(argv[1],"-t") == 0)
-    {
-        cout << "Training!" << endl;
-        string file(argv[2]);
-        training(file);
-
-    }
-    else if (strcmp(argv[1],"-p") == 0) 
-    {
-        cout << "Predict!" << endl;
-        string file(argv[2]);
-        predict(file);
-    }
-    else
-    {
-        cout << "Run taining:\nUSAGE: ./main -t train.csv" << endl;
-        cout << "Run predicting:\nUSAGE: ./main -p test.csv" << endl;
-    }
-
-
     //getCell(file_path, ",");
     //PrintOneColumn(file_path, 1934);
     //PrintRows(file_path, 1, 1);

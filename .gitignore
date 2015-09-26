@@ -27,6 +27,10 @@ obj/*
 *.exe
 *.out
 *.app
-bin/*
 
+# Text files
+*.txt
+
+bin/*
+.idea/*
 files/*
