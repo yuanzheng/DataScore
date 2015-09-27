@@ -1,4 +1,8 @@
 
+OBJS = obj/main.o \
+	   obj/TrainFile.o \
+	   obj/test.o
+
 SRC = obj/main.o
 EXE = bin/main
 T = obj/TrainFile.o
@@ -29,4 +33,4 @@ $(T): src/TrainFile.cpp
 
 clean:
 	@- rm -f bin/*
-	@- rm -f obj/*.o
+	@- rm -rf $(OBJS)

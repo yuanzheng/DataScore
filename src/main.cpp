@@ -419,14 +419,36 @@ void predict(string file_path)
 
 }
 
-void training(string file_path)
+int training(string file_path)
 {
-    TrainFile* f = NULL;
-
+    TrainFile* f = new TrainFile(file_path);
+    cout << "Training!" << endl;
     while (true)
     {
         string line;
-        cout << "1. Load training file" << endl;
+        cout << "Options: " << endl;
+        cout << "1. Load training file (Typing: 1 or quit)" << endl;
+        cin >> line;
+
+        if (line == "1")
+        {
+            if (f->loadFile())
+                break;
+            else
+                cout << "Loading failed !" << endl;
+
+        }
+        else if (line == "quit")
+        {
+            delete f;
+            return 0;
+        }
+    }
+    
+    while (true)
+    {
+        string option;
+        
         cout << "2. Number of rows" << endl;
         cout << "3. Number of columns" << endl;
         cout << "4. Print column names" << endl;
@@ -434,31 +456,28 @@ void training(string file_path)
         cout << "6. Print one column, (column number)" << endl;
         cout << "7. Split by columns, (number of columns in each file)" << endl;
         cout << "8. Split by rows, (number of rows in each file)" << endl;
+        cout << "Tyeping quit, to quit" << endl;
 
-        getline(cin, line);
-        //cin >> line;
-
-        if (line == "1")
+        getline(cin, option);
+        
+        if (option == "2")
         {
-            if (f == NULL) {
-                cout << "first time, point is null" << endl;
-                f = new TrainFile(file_path);
-
-            }
-        }
-        if (line == "quit")
+            cout << "Total rows: " << f->countRows() << endl;
+            vector<string> &theRows = f->getRows();
+            cout << "Total rows from vector: " << theRows.size() << endl;
+            cout << "TheRow address " << &theRows << endl;
+        } 
+        else if (option == "quit")
             break;
 
-
-        cout << "see: " << line << endl;
+        cout << "see: " << option << endl;
+         
     }
 
-    if (f != NULL)
-    {
-        cout << "delete f" << endl;
-        delete f;
-    }
+    cout << "delete f" << endl;
+    delete f;
 
+    return 0;
 }
 
 
@@ -477,7 +496,6 @@ int main(int argc, char* argv[]) {
 
     if (strcmp(argv[1],"-t") == 0)
     {
-        cout << "Training!" << endl;
         string file(argv[2]);
         training(file);
 

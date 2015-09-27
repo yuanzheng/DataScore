@@ -18,12 +18,17 @@ class TrainFile {
 
         bool loadFile();
         int countRows();
+        void print(vector <string> & v);
+
+        vector<string>& getRows();
 
     private:
         vector<string> rows;
         size_t numberOfRows;
         size_t numberOfColumns;
         string file_path;
+
+        vector<string> splitString(string& str, string delimiter);
 };
 
 
